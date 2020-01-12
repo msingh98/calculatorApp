@@ -5,7 +5,7 @@ class CalculatorsController < ApplicationController
   # GET /calculators
   # GET /calculators.json
   def index
-    @calculations = Calculator.last(10).reverse
+    @calculations = Calculator.last(10).reverse #set history bound to 10
   end
 
   # GET /calculators/1
@@ -26,7 +26,7 @@ class CalculatorsController < ApplicationController
   # POST /calculators
   # POST /calculators.json
   def create
-    @calculator = Calculator.new(calculator_params)
+    @calculator = current_user.calculators.new(calculator_params)
 
     respond_to do |format|
       if @calculator.save

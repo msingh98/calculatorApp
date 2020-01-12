@@ -60,6 +60,9 @@
                 <tbody>
                     <% @calculations.each do |calculation| %>
                     <tr>
+                        <td><%= calculation.user.email %> calculated :</td>
+                    </tr>
+                    <tr>
                         <td><%= calculation.content %></td>
                     </tr>
                     <% end %>
