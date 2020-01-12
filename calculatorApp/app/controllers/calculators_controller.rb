@@ -5,7 +5,7 @@ class CalculatorsController < ApplicationController
   # GET /calculators
   # GET /calculators.json
   def index
-    @calculations = Calculator.all
+    @calculations = Calculator.last(10).reverse
   end
 
   # GET /calculators/1
