@@ -1,15 +1,17 @@
 class CalculatorsController < ApplicationController
   before_action :set_calculator, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /calculators
   # GET /calculators.json
   def index
-    @calculators = Calculator.all
+    @calculations = Calculator.all
   end
 
   # GET /calculators/1
   # GET /calculators/1.json
   def show
+    @calculator = Calculators.find(params)
   end
 
   # GET /calculators/new
@@ -28,7 +30,7 @@ class CalculatorsController < ApplicationController
 
     respond_to do |format|
       if @calculator.save
-        format.html { redirect_to @calculator, notice: 'Calculator was successfully created.' }
+        format.html { redirect_to calculators_path, notice: 'Calculation was saved.' }
         format.json { render :show, status: :created, location: @calculator }
       else
         format.html { render :new }
@@ -37,29 +39,6 @@ class CalculatorsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /calculators/1
-  # PATCH/PUT /calculators/1.json
-  def update
-    respond_to do |format|
-      if @calculator.update(calculator_params)
-        format.html { redirect_to @calculator, notice: 'Calculator was successfully updated.' }
-        format.json { render :show, status: :ok, location: @calculator }
-      else
-        format.html { render :edit }
-        format.json { render json: @calculator.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /calculators/1
-  # DELETE /calculators/1.json
-  def destroy
-    @calculator.destroy
-    respond_to do |format|
-      format.html { redirect_to calculators_url, notice: 'Calculator was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +48,6 @@ class CalculatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calculator_params
-      params.fetch(:calculator, {})
+      params.permit(:content)
     end
 end

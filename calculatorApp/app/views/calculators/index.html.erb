@@ -11,8 +11,9 @@
     <body>
         <div class= "container">
                 <div class="container">
-                    <form name="form">
-                        <input class="textview" name="textview">
+                    <form name="form" form action="/calculators" method="post">
+                        <input class="textview" name="content">
+                         <input type="submit" value="Submit This Calculation">
                     </form>
                     <table>
                         <tr>
@@ -46,6 +47,24 @@
                     </table>
                 </div>     
             </div>
+
+            <h1>Past Calculations</h1>
+
+            <table>
+            <thead>
+                <tr>
+                <th colspan="3"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @calculations.each do |calculation| %>
+                <tr>
+                    <td><%= calculation.content %></td>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
             <div class="form-inline mr-1 mb-5">
                 <% if current_user %>
                     <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'navbar-brand' %>
@@ -54,5 +73,6 @@
                     <%= link_to 'Login', new_user_session_path, class: 'navbar-brand' %>
                 <% end %>
     </div>
+
     </body>
 </html>

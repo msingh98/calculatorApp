@@ -16,20 +16,20 @@
 //= require_tree .
 
 function insert(num){
-    document.form.textview.value = document.form.textview.value+num
+    document.form.content.value = document.form.content.value+num
 
 }
 function equal(){
-    var exp = document.form.textview.value
+    var exp = document.form.content.value
     if(exp){
-        document.form.textview.value = eval(exp)
+        document.form.content.value = exp+'='+ eval(exp)
     }
 }
 function clean(){
-    document.form.textview.value = ""
+    document.form.content.value = ""
 
 }
 function back(){
-    var exp = document.form.textview.value
-    document.form.textview.value = exp.substring(0,exp.length-1)
+    var exp = document.form.content.value
+    document.form.content.value = exp.substring(0,exp.length-1)
 }
