@@ -31,7 +31,7 @@ class CalculatorsController < ApplicationController
 
     respond_to do |format|
       if @calculator.save
-        format.html { redirect_to calculators_path, notice: 'Calculation was saved.' }
+        format.html { redirect_to calculators_path }
         format.json { render :show, status: :created, location: @calculator }
         format.js
       else
