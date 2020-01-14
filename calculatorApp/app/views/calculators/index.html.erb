@@ -13,7 +13,9 @@
                 <%= render 'calculators/calculator' %>
             </div>
             <div id = 'calculations'>
-                <h2 class ='title'>Calculation History</h2>
+                <div id ='title'>
+                    <h2>Calculation History</h2>
+                </div>
                 <% @calculations.each do |calculation| %>
                     <%= render 'calculators/calculation', calculation: calculation %>
                 <% end %>
