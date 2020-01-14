@@ -6,6 +6,7 @@ class CalculatorsController < ApplicationController
   # GET /calculators.json
   def index
     @calculations = Calculator.last(10).reverse #set history bound to 10
+    @calculation = Calculator.new
   end
 
   # GET /calculators/1
@@ -32,9 +33,11 @@ class CalculatorsController < ApplicationController
       if @calculator.save
         format.html { redirect_to calculators_path, notice: 'Calculation was saved.' }
         format.json { render :show, status: :created, location: @calculator }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @calculator.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
