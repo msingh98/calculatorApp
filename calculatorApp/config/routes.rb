@@ -4,6 +4,7 @@ Rails.application.routes.draw do
                registrations: 'users/registrations'
              },
              path: '/'
+  mount ActionCable.server => '/cable'
   resources :calculators
 
   root 'calculators#index'
